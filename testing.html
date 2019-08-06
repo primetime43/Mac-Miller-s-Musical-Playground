@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mac Miller's Musical Playground</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/homePageDesign.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/amplitudejs@v4.1.0/dist/amplitude.js"></script>
+
+
+    <!-- Include Resource Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./css/foundation.min.css" />
+
+    <!--
+			Include Resource Javascript
+			NOTE: These are for handling things outside of the scope of AmplitudeJS
+		-->
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/foundation.min.js"></script>
+
+    <!-- Include Amplitude JS -->
+    <script type="text/javascript" src="./dist/amplitude.js"></script>
+
+    <!--
+			Include UX functions JS
+			NOTE: These are for handling things outside of the scope of AmplitudeJS
+		-->
+    <script type="text/javascript" src="./js/functions.js"></script>
+
+    <!-- Include Style Sheet -->
+    <link rel="stylesheet" type="text/css" href="./css/app.css" />
+</head>
+
+<body>
+    <!--    top of page carousel-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+            <li data-target="#myCarousel" data-slide-to="6"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="./Carousel%20Images/swimming%20album%20cover.png" alt="Swimming">
+                <div class="carousel-caption">
+                    <h3 style="color:black">Swimming</h3>
+                    <p style="color:black">Studio album by Mac Miller released August 3, 2018</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./Carousel%20Images/divine.jpg" alt="The Divine Feminine">
+                <div class="carousel-caption">
+                    <h3 style="color:black">The Divine Feminine</h3>
+                    <p style="color:black">Studio album by Mac Miller released September 16, 2016</p>
+                </div>
+            </div>
+
+            <!--<div class="item">
+                <img src="./Carousel%20Images/GOODAM.jpg" alt="GO:OD AM">
+                <div class="carousel-caption">
+                    <h3 style="color:black">GO:OD AM</h3>
+                    <p style="color:black">Studio album by Mac Miller released September 18, 2015</p>
+                </div>
+            </div>-->
+
+            <div class="item">
+                <img src="./Carousel%20Images/faces.jpg" alt="Faces">
+                <div class="carousel-caption">
+                    <h3 style="color:black">Faces</h3>
+                    <p style="color:black">Mixtape by Mac Miller released May 11, 2014</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./Carousel%20Images/watching%20movies.png" alt="Watching Movies with the Sound Off">
+                <div class="carousel-caption">
+                    <h3>Watching Movies with the Sound Off</h3>
+                    <p>Studio album by Mac Miller released June 18, 2013</p>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="./Carousel%20Images/macmiller.jpg" alt="Mac Miller">
+            </div>
+
+            <div class="item">
+                <img width="100%" src="./Carousel%20Images/swimming%20playlist.png" alt="New York">
+            </div>
+
+            <div class="item">
+                <img width="100%" src="./Carousel%20Images/swimming%20alt%20cover.jpg" alt="New York">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!--  top header navbar  -->
+    <div class="navBar">
+        <li><a href="./homePage.html">Home</a></li>
+        <li><a href="./unreleasedSongs.html">Rare/Unreleased Songs</a></li>
+        <li><a href="http://www.macmillerswebsite.com/" target="_blank">Mac Miller's Website</a></li>
+        <li><a href="https://pittsburghfoundation.org/macmiller" target="_blank">The Mac Miller Fund</a>
+    </div>
+
+    <!--    Move JS to JS file eventually -->
+
+    <style>
+        #lyricBox {
+            border-radius: 25px;
+            margin: 0 auto;
+            margin-bottom: 0 auto;
+            /*this line above will center the box*/
+            border: 2px solid black;
+            background: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+    </style>
+    <p id="lyricBox">Lyric Box</p>
+
+    <script>
+        function readLyrics(textFileName) {
+            if (textFileName == 'default') {
+                document.getElementById("lyricBox").innerHTML = 'Lyric Box'
+            } else {
+                fetch('./lyrics/KIDS/' + textFileName + '.txt')
+                    .then(response => response.text())
+                    .then(text => document.getElementById("lyricBox").innerHTML = text)
+            }
+        }
+
+    </script>
+
+    <script>
+        function checkForNewSong() {
+
+            setTimeout(function() {
+                var x = document.getElementsByClassName("song-name");
+                readLyrics(x[0].innerHTML);
+
+
+
+            }, 100);
+
+            //var x = document.getElementsByClassName("song-name");
+            //alert(x[0].innerHTML);
+            //readLyrics(x[0].innerHTML);
+        }
+
+    </script>
+
+    <div class="parent">
+
+        <!--    Lyrics on left    -->
+        <div class="test" "center center no-repeat;">
+            <div id='rg_embed_link_64990' class='rg_embed_link' data-song-id='64990'>Read <a href='https://genius.com/Mac-miller-kickin-incredibly-dope-shit-intro-lyrics'>“Kickin' Incredibly Dope Shit (Intro)” by Mac Miller</a> on Genius</div>
+            <script crossorigin src='//genius.com/songs/64990/embed.js'></script>
+
+        </div>
+
+<!--    Music player on right    -->
+        <div class="test last">
+            <!--  Player one  -->
+            <div class="grid-x" id="blue-playlist-container">
+                <div class="large-10 medium-12 small-11 large-centered medium-centered small-centered cell" id="amplitude-player">
+                    <div class="grid-x">
+                        <div class="large-6 medium-6 small-12 cell" id="amplitude-left">
+                            <!--      Image for album covers              -->
+                            <img data-amplitude-song-info="cover_art_url" width="100%" />
+                            <div id="player-left-bottom">
+                                <div id="time-container">
+                                    <span class="current-time">
+                                        <span class="amplitude-current-minutes"></span>:<span class="amplitude-current-seconds"></span>
+                                    </span>
+                                    <div id="progress-container">
+                                        <input type="range" class="amplitude-song-slider" />
+                                        <progress id="song-played-progress" class="amplitude-song-played-progress"></progress>
+                                        <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+                                    </div>
+                                    <span class="duration">
+                                        <span class="amplitude-duration-minutes"></span>:<span class="amplitude-duration-seconds"></span>
+                                    </span>
+                                </div>
+
+                                <div id="control-container">
+                                    <div id="repeat-container">
+                                        <div class="amplitude-repeat" id="repeat"></div>
+                                        <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+                                    </div>
+
+                                    <div id="central-control-container">
+                                        <div id="central-controls">
+                                            <div class="amplitude-prev" id="previous" onclick="checkForNewSong();"></div>
+                                            <div class="amplitude-play-pause" id="play-pause"></div>
+                                            <div class="amplitude-next" id="next" onclick="checkForNewSong();"></div>
+                                        </div>
+                                    </div>
+
+                                    <div id="volume-container">
+                                        <div class="volume-controls">
+                                            <div class="amplitude-mute amplitude-not-muted"></div>
+                                            <input type="range" class="amplitude-volume-slider" />
+                                            <div class="ms-range-fix"></div>
+                                        </div>
+                                        <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle-right"></div>
+                                    </div>
+                                </div>
+
+
+
+                                <div id="meta-container">
+                                    <span data-amplitude-song-info="name" class="song-name"></span>
+
+                                    <div class="song-artist-album">
+                                        <span data-amplitude-song-info="artist"></span>
+                                        <span data-amplitude-song-info="album"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--       List of songs in playlist         -->
+                        <div class="large-6 medium-6 small-12 cell" id="amplitude-right">
+                            <div onclick="readLyrics('Kickin Incredibly Dope Shit (Intro)');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="0">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Kickin Incredibly Dope Shit (Intro)</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:44</span>
+                            </div>
+                            <div onclick="readLyrics('Outside');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="1">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Outside</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:37</span>
+                            </div>
+                            <div onclick="readLyrics('Get Em Up');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="2">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Get Em Up</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:18</span>
+                            </div>
+                            <div onclick="readLyrics('Nikes On My Feet');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="3">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Nikes On My Feet</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:44</span>
+                            </div>
+                            <div onclick="readLyrics('Senior Skip Day');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="4">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Senior Skip Day</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:55</span>
+                            </div>
+                            <div onclick="readLyrics('The Spins');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="5">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">The Spins</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:16</span>
+                            </div>
+                            <div onclick="readLyrics('Traffic In The Sky');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="6">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Traffic In The Sky</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:33</span>
+                            </div>
+                            <div onclick="readLyrics('Dont Mind If I Do');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="7">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Dont Mind If I Do</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:18</span>
+                            </div>
+                            <div onclick="readLyrics('Paper Route feat Chevy Woods');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="8">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Paper Route feat Chevy Woods</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:00</span>
+                            </div>
+                            <div onclick="readLyrics('Good Evening');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="9">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Good Evening</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:55</span>
+                            </div>
+                            <div onclick="readLyrics('Ride Around');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="10">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Ride Around</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:24</span>
+                            </div>
+                            <div onclick="readLyrics('Knock Knock');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="11">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Knock Knock</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:18</span>
+                            </div>
+                            <div onclick="readLyrics('default');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="12">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Mad Flava Heavy Flow (Interlude) feat DJ Bonics</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">0:26</span>
+                            </div>
+                            <div onclick="readLyrics('Kool Aid & Frozen Pizza');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="13">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Kool Aid & Frozen Pizza</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:37</span>
+                            </div>
+                            <div onclick="readLyrics('All I Want Is You');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="14">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">All I Want Is You</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:42</span>
+                            </div>
+                            <div onclick="readLyrics('Poppy');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="15">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Poppy</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:52</span>
+                            </div>
+                            <div onclick="readLyrics('Face In The Crowd');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="16">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Face In The Crowd</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">3:29</span>
+                            </div>
+                            <div onclick="readLyrics('Bonus La La La');" class="song amplitude-song-container amplitude-play-pause" data-amplitude-song-index="17">
+                                <div class="song-now-playing-icon-container">
+                                    <div class="play-button-container">
+
+                                    </div>
+                                    <img class="now-playing" src="./img/now-playing.svg" />
+                                </div>
+                                <div class="song-meta-data">
+                                    <span class="song-title">Bonus La La La</span>
+                                    <span class="song-artist">Mac Miller</span>
+                                </div>
+                                <a href="http://www.macmillerswebsite.com/" class="bandcamp-link" target="_blank">
+                                    <img class="bandcamp-grey" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                    <img class="bandcamp-white" title="Click to go to Mac's Site" src="./img/4wyg4yia_wg3_icon.ico" />
+                                </a>
+                                <span class="song-duration">2:26</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<!--  Testing  -->
+
+    <style>
+        .parent {
+            display: flex;
+            font-family: arial, sans-serif;
+        }
+
+        .test {
+            width: 50%;
+            padding: 2em;
+            color: #ffffff;
+            background: #eeeeee;
+            min-height: 500px;
+            max-height: 500px;
+        }
+
+        .last {
+            color: #222;
+            background: #ccc;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            .parent {
+                flex-direction: column-reverse;
+            }
+
+            .test {
+                width: auto;
+                min-height: 200px;
+            }
+
+            .last {
+                background: #aa0000;
+            }
+
+        }
+
+    </style>
+
+
+
+    <script type="text/javascript">
+        Amplitude.init({
+            "songs": [{
+                    "name": "Kickin Incredibly Dope Shit (Intro)",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/01%20-%20Kickin%20Incredibly%20Dope%20Shit%20(Intro).mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Outside",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/02%20-%20Outside.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Get Em Up",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/03%20-%20Get%20Em%20Up.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Nikes On My Feet",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/04%20-%20Nikes%20On%20My%20Feet.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Senior Skip Day",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/05%20-%20Senior%20Skip%20Day.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "The Spins",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/06%20-%20The%20Spins.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Traffic In The Sky",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/07%20-%20Traffic%20In%20The%20Sky.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Dont Mind If I Do",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/08%20-%20Dont%20Mind%20If%20I%20Do.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Paper Route feat Chevy Woods",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/09%20-%20Paper%20Route%20feat%20Chevy%20Woods.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Good Evening",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/10%20-%20Good%20Evening.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Ride Around",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/11%20-%20Ride%20Around.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Knock Knock",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/12%20-%20Knock%20Knock.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Mad Flava Heavy Flow (Interlude) feat DJ Bonics",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/13%20-%20Mad%20Flava%20Heavy%20Flow%20(Interlude)%20feat%20DJ%20Bonics.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Kool Aid & Frozen Pizza",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/14%20-%20Kool%20Aid%20%26%20Frozen%20Pizza.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "All I Want Is You",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/15%20-%20All%20I%20Want%20Is%20You.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Poppy",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/16%20-%20Poppy.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Face In The Crowd",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/17%20-%20Face%20In%20The%20Crowd.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                },
+                {
+                    "name": "Bonus La La La",
+                    "artist": "Mac Miller",
+                    "album": "KIDS",
+                    "url": "./audio/KIDS/18%20-%20Bonus%20La%20La%20La%20.mp3",
+                    "cover_art_url": "./audio/KIDS/00%20-%20Mac_Miller_Kids-front-large.jpg"
+                }
+            ],
+            "bindings": {
+                80: 'play_pause'
+            },
+        });
+
+    </script>
+
+    <div style="float: left;"><strong>Website made by primetime43</strong></div>
+    <div style="float: right;"><strong>R.I.P. Mac Miller</strong></div>
+    <!--  make code below visible to see hit counter  -->
+    <div style="margin: 0 auto; width: 100px; visibility: hidden" href='https://www.symptoma.it/'>
+        <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/559260/t/4"></script>
+    </div>
+
+</body>
+
+</html>
